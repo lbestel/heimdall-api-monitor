@@ -1,0 +1,58 @@
+[project]
+name = "heimdall"
+version = "0.1.0"
+description = "API monitoring and integration health platform"
+authors = [
+    {name = "Lucas Bestel"}
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "httpx (>=0.28.1,<0.29.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.1.1,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "ruff (>=0.16.2,<0.17.0)",
+    "typos (>=1.49.0,<2.0.0)",
+    "poethepoet (>=0.48.0,<0.49.0)"
+]
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest]
+pythonpath = ['.']
+addopts = ['-p', 'no:warnings', '--cov=src', '--cov-context=test']
+
+[tool.typos.files]
+extend-exclude = ["*.md"]
+
+[tool.poe.tasks]
+lint = { cmd = "ruff check" }
+
+format.sequence = [
+  { cmd = "ruff check --fix" },
+  { cmd = "ruff format" },
+]
+
+test.sequence = [
+  "lint",
+  { cmd = "pytest -s -x -vv $POE_EXTRA_ARGS" },
+  { cmd = "coverage html --show-contexts" },
+]
