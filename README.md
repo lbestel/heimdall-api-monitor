@@ -1,6 +1,20 @@
-# Heimdall
+<table>
+  <tr>
+    <td width="30%">
+      <img src="assets/heimdall.jpg" alt="Heimdall">
+    </td>
+    <td width="70%" valign="middle">
 
-> API monitoring system built with Python, focused on Object-Oriented Programming, Clean Code and software architecture.
+<h1>Heimdall</h1>
+<h3>API Monitoring System</h3>
+
+<p>
+  API monitoring system built with Python, focused on
+  Object-Oriented Programming, Clean Code and software architecture.
+</p>
+
+  </tr>
+</table>
 
 Heimdall is an API monitoring system designed to check the health of HTTP endpoints and provide a clear classification of their current state.
 
